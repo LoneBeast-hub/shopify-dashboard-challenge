@@ -422,6 +422,7 @@ main {
 .guide .subtitle-link {
     color: #005BD3;
     font-size: 14px;
+    text-decoration: none;
 }
 
 .guide button {
