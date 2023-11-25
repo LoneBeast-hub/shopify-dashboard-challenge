@@ -199,10 +199,11 @@ checkButtons.forEach(checkButton => {
 
 // more functionalities
 guideElements.forEach(function(guideElement) {
+    // select all check buttons
     const checkButton = guideElement.querySelector('.check-button');
 
-    // mouse action
-    checkButton.addEventListener('click', function(event) {
+    // mouse action to toggle a guide checked state
+    checkButton.addEventListener('click', function() {
         if (checkButton.classList.contains('checked')) {
             transitionCheckedToUnchecked();
             checkButton.classList.remove('checked');
@@ -213,10 +214,11 @@ guideElements.forEach(function(guideElement) {
             completedCount++;
         }
 
+        // update the count
         updateProgress();
     });
 
-    // keyboard action
+    // keyboard action to toggle a guide checked state
     checkButton.addEventListener('keydown', function(event) {
         if(event.key === 'Enter') {
             if (checkButton.classList.contains('checked')) {
@@ -230,10 +232,12 @@ guideElements.forEach(function(guideElement) {
             }   
         }
 
+        // update the count
         updateProgress();
     });
 
 
+    // transition from checked to unchecked icon
     const transitionCheckedToUnchecked = () => {
         const svgArray = [
             `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -289,12 +293,14 @@ guideElements.forEach(function(guideElement) {
             checkButton.innerHTML = svgArray[index];
             index++;
     
+            // stop interval when the last index is reached
             if (index === svgArray.length) {
                 clearInterval(intervalId);
             }
-        }, 50);
+        }, 100);
     }
 
+    // transition from unchecked to checked icon
     const transitionUncheckedToChecked = () => {
         const svgArray = [
             `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -349,65 +355,65 @@ guideElements.forEach(function(guideElement) {
         const intervalId = setInterval(() => {
             checkButton.innerHTML = svgArray[index];
             index--;
-    
+            
+            // stop interval when the last index is reached
             if (index < 0) {
                 clearInterval(intervalId);
             }
-        }, 50);
+        }, 100);
     }
 
     // mouse action
-    guideElement.addEventListener('click', function() {
-        guideElements.forEach(function(element) {
-                if (element !== guideElement) {
-                    element.classList.remove('clicked');
-                    element.querySelector('.additional-info').style.display = 'none';
-                    element.querySelector('.guide-img').style.display = 'none';
-                }
+    guideElement.addEventListener('click', function () {
+        const isExpanded = guideElement.classList.contains('clicked');
+
+        guideElements.forEach(function (element) {
+            if (element !== guideElement) {
+                // Close other guides
+                element.classList.remove('clicked');
+                element.querySelector('.additional-info').style.display = 'none';
+                element.querySelector('.guide-img').style.display = 'none';
             }
-        );
+        });
 
-        guideElement.classList.toggle('clicked');
-        const additionalInfo = guideElement.querySelector('.additional-info');
-        const guideImg = guideElement.querySelector('.guide-img');
+        if (!isExpanded) {
+            // Toggle the clicked guide only if it wasn't already expanded
+            guideElement.classList.toggle('clicked');
+            const additionalInfo = guideElement.querySelector('.additional-info');
+            const guideImg = guideElement.querySelector('.guide-img');
 
-        if (guideElement.classList.contains('clicked')) {
             additionalInfo.style.display = 'block';
             // Check if viewport width is more than 575px before displaying guideImg
             if (window.innerWidth > 575) {
                 guideImg.style.display = 'block';
             }
-        } else {
-            additionalInfo.style.display = 'none';
-            guideImg.style.display = 'none';
         }
     });
 
     // keyboard action
     guideElement.addEventListener('keydown', function(e) {
+        const isExpanded = guideElement.classList.contains('clicked');
         if(e.key === 'Enter') {
-            guideElements.forEach(function(element) {
-                    if (element !== guideElement) {
-                        element.classList.remove('clicked');
-                        element.querySelector('.additional-info').style.display = 'none';
-                        element.querySelector('.guide-img').style.display = 'none';
-                    }
+            guideElements.forEach(function (element) {
+                if (element !== guideElement) {
+                    // Close other guides
+                    element.classList.remove('clicked');
+                    element.querySelector('.additional-info').style.display = 'none';
+                    element.querySelector('.guide-img').style.display = 'none';
                 }
-            );
+            });
 
-            guideElement.classList.toggle('clicked');
-            const additionalInfo = guideElement.querySelector('.additional-info');
-            const guideImg = guideElement.querySelector('.guide-img');
-
-            if (guideElement.classList.contains('clicked')) {
+            if (!isExpanded) {
+                // Toggle the clicked guide only if it wasn't already expanded
+                guideElement.classList.toggle('clicked');
+                const additionalInfo = guideElement.querySelector('.additional-info');
+                const guideImg = guideElement.querySelector('.guide-img');
+    
                 additionalInfo.style.display = 'block';
                 // Check if viewport width is more than 575px before displaying guideImg
                 if (window.innerWidth > 575) {
                     guideImg.style.display = 'block';
                 }
-            } else {
-                additionalInfo.style.display = 'none';
-                guideImg.style.display = 'none';
             }
         }
         
