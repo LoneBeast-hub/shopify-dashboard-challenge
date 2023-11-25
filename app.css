@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
 /* root */
 :root {
     --grey-300: #1C181D;

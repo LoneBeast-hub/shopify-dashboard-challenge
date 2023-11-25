@@ -8,13 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./app.css">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-        .font-inter {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
 </head>
 <body id="body" class="font-inter">
     <!-- header -->
@@ -79,7 +72,7 @@
     <!-- Main section -->
     <main class="relative">
         <!-- Notifications Template -->
-        <div id="notifications" class="notifications absolute flex-col" aria-label="Notifications">
+        <div id="notifications" class="notifications absolute flex-col" aria-label="Notifications icon">
             <!-- Alert (filter and read icons) -->
             <div class="flex justify-between">
                 <p class="alerts-text">Alerts</p>
@@ -216,14 +209,14 @@
                     <div class="guide-progress flex items-center">
                         <div class="count-container">
                             <!-- count (dynamic) -->
-                            <span class="count">0</span> / 5 completed
+                            <span aria-label="Number of selected guides" class="count">0</span> / 5 completed
                         </div>
-                        <div class="progress-bar-container">
+                        <div class="progress-bar-container" aria-label="Guides Progress bar">
                             <div id="progress-bar" class="progress-bar"></div>
                         </div>
                     </div>
                     <!-- guides -->
-                    <div id="guides" class="guides flex-col">
+                    <div id="guides" class="guides flex-col" aria-label="Guides container">
                         <!-- guide -->
                         <div class="guide flex justify-between">
                             <!-- check button and guide info -->
@@ -232,7 +225,7 @@
                                 <div class="guide-info flex flex-col">
                                     <div class="flex gap-8">
                                         <!-- check button -->
-                                        <div class="check-button" tabindex="0">
+                                        <div class="check-button" tabindex="0" aria-label="Select Customize your online store">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
                                             </svg>
@@ -260,7 +253,7 @@
                                 <div class="guide-info flex flex-col">
                                     <div class="flex gap-8">
                                         <!-- check button -->
-                                        <div class="check-button" tabindex="0">
+                                        <div class="check-button" tabindex="0" aria-label="Select Add your first product">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
                                             </svg>
@@ -289,7 +282,7 @@
                                 <div class="guide-info flex flex-col">
                                     <div class="flex gap-8">
                                         <!-- check button -->
-                                        <div class="check-button" tabindex="0">
+                                        <div class="check-button" tabindex="0" aria-label="Select Add acustom domain guide">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
                                             </svg>
@@ -317,7 +310,7 @@
                                 <div class="guide-info flex flex-col">
                                     <div class="flex gap-8">
                                         <!-- check button -->
-                                        <div class="check-button" tabindex="0">
+                                        <div class="check-button" tabindex="0" aria-label="Select Name your store guide">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
                                             </svg>
@@ -345,7 +338,7 @@
                                 <div class="guide-info flex flex-col">
                                     <div class="flex gap-8">
                                         <!-- check button -->
-                                        <div class="check-button" tabindex="0">
+                                        <div class="check-button" tabindex="0" aria-label="Select Set up a payment provider guide">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
                                             </svg>
@@ -372,65 +365,6 @@
     </main>
 
     <!-- script -->
-    <script src="app.js"></script>
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const guideElements = document.querySelectorAll('.guide');
-    const progressBar = document.getElementById('progress-bar');
-    const countSpan = document.querySelector('.count');
-
-    let completedCount = 0;
-
-    guideElements.forEach(function(guideElement) {
-      const checkButton = guideElement.querySelector('.check-button');
-
-      checkButton.addEventListener('click', function(event) {
-        // event.stopPropagation(); // Prevent the click event from propagating to the guide element
-
-        if (checkButton.classList.contains('checked')) {
-          checkButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/></svg>`;
-          checkButton.classList.remove('checked');
-          completedCount--;
-        } else {
-          checkButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#303030"></circle><path d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z" fill="#fff"></path></svg>';
-          checkButton.classList.add('checked');
-          completedCount++;
-        }
-
-        updateProgress();
-      });
-
-      guideElement.addEventListener('click', function() {
-        guideElements.forEach(function(element) {
-          if (element !== guideElement) {
-            element.classList.remove('clicked');
-            element.querySelector('.additional-info').style.display = 'none';
-            element.querySelector('.guide-img').style.display = 'none';
-          }
-        });
-
-        guideElement.classList.toggle('clicked');
-        const additionalInfo = guideElement.querySelector('.additional-info');
-        const guideImg = guideElement.querySelector('.guide-img');
-
-        if (guideElement.classList.contains('clicked')) {
-          additionalInfo.style.display = 'block';
-          guideImg.style.display = 'block';
-        } else {
-          additionalInfo.style.display = 'none';
-          guideImg.style.display = 'none';
-        }
-      });
-    });
-
-    function updateProgress() {
-      countSpan.textContent = completedCount;
-      const percentage = (completedCount / guideElements.length) * 100;
-      progressBar.style.width = `${percentage}%`;
-    }
-  });
-
-      </script> -->
-            
+    <script src="app.js"></script>     
 </body>
 </html>
